@@ -8,11 +8,13 @@
 }
   
 .container {
+  background-color: black;
 
 }
 
 #section-1 {
-
+  background-color: purple;
+  color:yellow;
 }
 
 #section-6 {
