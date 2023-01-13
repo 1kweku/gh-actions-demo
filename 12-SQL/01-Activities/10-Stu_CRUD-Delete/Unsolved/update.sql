@@ -1,2 +1,5 @@
 UPDATE fiction
-SET name = "Candide";
+SET name = "Slamdunk"
+WHERE id = 3;
+
+

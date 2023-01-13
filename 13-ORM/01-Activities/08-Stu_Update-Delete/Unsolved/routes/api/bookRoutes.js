@@ -1,15 +1,66 @@
 const router = require('express').Router();
 const Book = require('../../models/Book');
 
+router.get('/', (req, res) => {
+  Book.findAll().then((bookData) => res.json(bookData))
+  .catch((err) => res.json(err))
+})
+
 // TODO finish the PUT route to UPDATE a book in the database with a matching book_id
-router.put('/:book_id', (req, res) => {
-  
-  
-});
+// router.put('/:book_id', (req, res) => {
+//   Book.update(
+//     {
+//       title: req.body.title,
+//       author: req.body.author,
+//       isbn: req.body.isn,
+//       pages: req.body.pages,
+//       edition: req.body.edition,
+//       is_paperback: req.body.is_paperback
+//     },
+//     {
+//       where: {
+//       book_id: req.params.book_id
+//       }, 
+//     }
+//   )
+//   .then((updatedBook) => {
+//     res.json(updatedBook);
+//   })
+//   .catch((err) => {
+//     res.json(err);
+//   })
+// });
+
+router.put('/:book_id', async (req, res) => {
+  const {title, author, isbn, pages, edition, is_paperback} = req.body
+  const updatedBook = await Book.update ({
+    title,
+    author,
+    isbn,
+    pages,
+    edition,
+    is_paperback
+  },
+  { where: {
+   book_id: req.params.book_id
+  }
+  })
+  res.json(updatedBook);
+})
 
 // TODO finish the DELETE route to DELETE a book in the database with a matching book_id
 router.delete('/:book_id', (req, res) => {
-  
+  Book.destroy({
+      where: {
+      book_id: req.body.book_id
+      },
+    })
+  .then((deletedBook) => {
+    res.json(deletedBook)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
 });
 
 router.post('/seed', (req, res) => {

@@ -40,11 +40,11 @@ const getTips = () =>
     },
     // body: JSON.stringify(data),
   })
-    .then((response) => response.json())
-    .then((data) => data)
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    .then((response) => console.log(response))
+    // .then((data) => data)
+    // .catch((error) => {
+    //   console.error('Error:', error);
+    //});
 
 // Post a new tip to the page
 const postTip = (tip) =>

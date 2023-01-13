@@ -30,6 +30,11 @@ router.put('/:book_id', (req, res) => {
     });
 });
 
+router.post('/', async (req, res) => {
+  const newBook = await Book.create(req.body)
+  res.status(200).json(newBook)
+})
+
 // Delete route for a book with a matching book_id
 router.delete('/:book_id', (req, res) => {
   // Looks for the books based book_id given in the request parameters

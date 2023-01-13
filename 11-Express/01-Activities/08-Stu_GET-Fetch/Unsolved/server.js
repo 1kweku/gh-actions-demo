@@ -18,6 +18,18 @@ app.get('/', (req, res) => {
 
 app.get('/api/pets', (req, res) => res.json(petData));
 
+app.get('/api/pets/:name', (req, res) => {
+  const requestedPet = req.params.name.toLowerCase();
+
+  if (requestedPet) {
+    for(let i=0; i < petData.length; i++) {
+      if (requestedPet === petData[i].name.toLowerCase()) {
+        return res.json(petData[i]);
+      }
+    }
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
 });

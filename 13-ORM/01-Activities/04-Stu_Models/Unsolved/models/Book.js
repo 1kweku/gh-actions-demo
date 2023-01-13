@@ -1,10 +1,16 @@
+//destructuring so we can use Model and DataTypes from sequeluze 
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Book extends Model {}
-
+//init is used to initialize model, which creates column 
 Book.init(
   {
+    book_id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     title: {
       type: DataTypes.STRING
     },
@@ -28,6 +34,7 @@ Book.init(
     sequelize,
     timestamps: false,
     underscored: true,
+    freezeTableName: true,
     modelName: 'book'
   }
 );

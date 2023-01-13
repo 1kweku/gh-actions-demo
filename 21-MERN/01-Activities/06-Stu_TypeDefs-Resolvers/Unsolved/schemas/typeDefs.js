@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type School {
@@ -24,6 +24,7 @@ const typeDefs = gql`
     officeHours: String
     officeLocation: String
     studentScore: Float
+    classes: [Class]
   }
 
   type Query {

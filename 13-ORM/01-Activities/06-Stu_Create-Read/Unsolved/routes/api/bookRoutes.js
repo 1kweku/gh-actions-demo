@@ -2,16 +2,20 @@ const router = require('express').Router();
 const Book = require('../../models/Book');
 
 // TODO: Add a comment describing the purpose of this route
+// GET ROUTE FOR ALL BOOK DATA
 router.get('/', (req, res) => {
   // TODO: Add a comment describing the functionality of this method
+  // GETS ALL DATA IN BOOK MODEL THEN SENDS IT AS RESPONSE TO COMPLETE REQUEST
   Book.findAll().then((bookData) => {
     res.json(bookData);
   });
 });
 
 // TODO: Add a comment describing the purpose of this route
+// GET ROUTE FOR ALL PAPERBACK BOOKS
 router.get('/paperbacks', (req, res) => {
   Book.findAll({
+    //
     // TODO: Add a comment describing the functionality of this property
     order: ['title'],
     // TODO: Add a comment describing the functionality of this property

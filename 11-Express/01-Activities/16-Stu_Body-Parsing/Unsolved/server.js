@@ -6,8 +6,9 @@ const reviews = require('./db/reviews');
 const app = express();
 
 // TODO: Implement middleware for the parsing of JSON data
-
+//app.use(express.json());
 // TODO: Implement middleware for parsing of URL encoded data
+app.use(express.urlencoded({ extended: true }));
 
 // GET request for ALL reviews
 app.get('/api/reviews', (req, res) => {
@@ -20,11 +21,15 @@ app.get('/api/reviews', (req, res) => {
 
 // GET request for a single review
 app.get('/api/reviews/:review_id', (req, res) => {
+  //if the request has a review id code will execute 
   if (req.params.review_id) {
+    //log method, in this case get, to console
     console.info(`${req.method} request received to get a single a review`);
+    //reviewID is dynamically given value of param
     const reviewId = req.params.review_id;
     for (let i = 0; i < reviews.length; i++) {
       const currentReview = reviews[i];
+      //if the current review has an id that matches with a review id, response will be that  review
       if (currentReview.review_id === reviewId) {
         res.status(200).json(currentReview);
         return;

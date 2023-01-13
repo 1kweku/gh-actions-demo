@@ -3,4 +3,8 @@ DROP DATABASE IF EXISTS books_db;
 CREATE DATABASE books_db;
 USE books_db;
 
+CREATE TABLE biography (
+    name VARCHAR(100) NOT NULL,
+    id INT NOT NULL
+);
 -- Add biography table --
